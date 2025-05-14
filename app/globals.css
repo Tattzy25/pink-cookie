@@ -1,0 +1,265 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 346.8 77.2% 49.8%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 346.8 77.2% 49.8%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 95%;
+    --card: 24 9.8% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 346.8 77.2% 49.8%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 346.8 77.2% 49.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-roboto), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 16px;
+    background-color: #e783bd;
+  }
+
+  /* Change the h1 font size for mobile */
+  h1:not([class*="no-gradient"]):not(.hero-heading) {
+    font-family: var(--font-great-vibes), cursive;
+    font-size: 36px; /* 36px for mobile */
+    background: linear-gradient(to right, #cc3d00, #f39811, #cc1800, #f39811, #cc3d00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Desktop size */
+  @media (min-width: 768px) {
+    h1:not([class*="no-gradient"]):not(.hero-heading) {
+      font-size: 72px; /* 72px for desktop */
+    }
+  }
+
+  h2:not([class*="font-"]) {
+    font-family: var(--font-playfair), serif;
+    font-size: 1.875rem; /* 30px mobile */
+    font-weight: 700;
+  }
+
+  h3:not([class*="font-"]) {
+    font-family: var(--font-playfair), serif;
+    font-size: 1.5rem; /* 24px mobile */
+    font-weight: 700;
+  }
+
+  /* Responsive Typography */
+  @media (min-width: 768px) {
+    body {
+      font-size: 1.125rem; /* 18px desktop */
+    }
+
+    h2:not([class*="font-"]) {
+      font-size: 2.25rem; /* 36px desktop */
+    }
+
+    h3:not([class*="font-"]) {
+      font-size: 1.875rem; /* 30px desktop */
+    }
+  }
+}
+
+.prose h2 {
+  @apply text-2xl font-bold text-rose-800 mt-8 mb-4;
+}
+
+.prose p {
+  @apply text-gray-700 mb-4;
+}
+
+/* Gold button styles */
+.btn-gold {
+  @apply bg-gold text-white hover:bg-gold-hover hover:shadow-gold transition-all duration-300;
+}
+
+/* Gold text gradient */
+.text-gold-gradient {
+  @apply bg-clip-text text-transparent bg-gold-gradient;
+}
+
+/* Rose Gold Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Rose Gold Glow Effect */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 15px 5px rgba(216, 131, 151, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 25px 10px rgba(216, 131, 151, 0.7);
+    transform: scale(1.02);
+  }
+}
+
+/* Rose Gold Text Class */
+.rose-gold-text {
+  background-image: linear-gradient(45deg, #e0bfb8, #f9dbd2, #d4a59a, #f3c4cf, #c86b85);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+/* Rose Gold Element with Glow */
+.rose-gold-glow {
+  background-image: linear-gradient(45deg, #e0bfb8, #f9dbd2, #d4a59a, #f3c4cf, #c86b85);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Luxury Button with Hover Effect */
+.btn-luxury {
+  background-image: linear-gradient(45deg, #e0bfb8, #f9dbd2, #d4a59a, #f3c4cf, #c86b85);
+  background-size: 200% auto;
+  transition: all 0.3s ease;
+}
+
+.btn-luxury:hover {
+  background-size: 100% auto;
+  filter: brightness(1.1);
+}
+
+.gradient-heading {
+  background: linear-gradient(to right, #1a1a1a, #8b4513, #b87333, #4a3021, #2d1a12);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: shimmer 2.5s infinite linear;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Orange gradient */
+.orange-gradient {
+  background: linear-gradient(to right, #cc3d00, #f39811, #cc1800, #f39811, #cc3d00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Font utility classes */
+.font-great-vibes {
+  font-family: var(--font-great-vibes), cursive !important;
+}
+
+.font-playfair {
+  font-family: var(--font-playfair), serif !important;
+}
+
+.font-roboto {
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+/* Font size utility classes */
+.text-h1-mobile {
+  font-size: 36px !important;
+}
+
+.text-h1-desktop {
+  font-size: 72px !important;
+}
+
+.text-h2-mobile {
+  font-size: 1.875rem !important; /* 30px */
+}
+
+.text-h2-desktop {
+  font-size: 2.25rem !important; /* 36px */
+}
+
+.text-h3-mobile {
+  font-size: 1.5rem !important; /* 24px */
+}
+
+.text-h3-desktop {
+  font-size: 1.875rem !important; /* 30px */
+}
+
+.text-body {
+  font-size: 1rem !important; /* 16px mobile */
+}
+
+/* No gradient class to override the default gradient when needed */
+.no-gradient {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  color: inherit !important;
+  text-shadow: none !important;
+}
+
+@media (min-width: 768px) {
+  .text-body {
+    font-size: 1.125rem !important; /* 18px desktop */
+  }
+}
