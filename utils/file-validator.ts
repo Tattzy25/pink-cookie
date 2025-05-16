@@ -5,8 +5,8 @@ export function validateFile(file: File): boolean {
     return false
   }
 
-  // Check file size (example: max 10MB)
-  const maxSize = 10 * 1024 * 1024 // 10MB
+
+  const maxSize = 50 * 1024 * 1024 
   if (file.size > maxSize) {
     return false
   }

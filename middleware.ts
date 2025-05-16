@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs"
+import { validateEnvOrThrow } from "@/lib/env-validation"
 
 export async function middleware(req: NextRequest) {
   try {
@@ -13,7 +14,7 @@ export async function middleware(req: NextRequest) {
     } = await supabase.auth.getSession()
 
     // Protected routes that require authentication
-    const protectedRoutes = ["/account", "/checkout", "/auth/reset-password"]
+const protectedRoutes = ["/account", "/checkout", "/auth/reset-password"]
 
     const isProtectedRoute = protectedRoutes.some((route) => req.nextUrl.pathname.startsWith(route))
 
@@ -22,6 +23,31 @@ export async function middleware(req: NextRequest) {
       const redirectUrl = new URL("/auth/login", req.url)
       redirectUrl.searchParams.set("redirectTo", req.nextUrl.pathname)
       return NextResponse.redirect(redirectUrl)
+    }
+    
+    // Add CORS headers for API routes
+    if (req.nextUrl.pathname.startsWith('/api')) {
+      // Get the origin from the request headers
+      const origin = req.headers.get('origin') || '*'
+      
+      // Create a new response with CORS headers
+      const corsResponse = NextResponse.next()
+      
+      // Set CORS headers
+      corsResponse.headers.set('Access-Control-Allow-Origin', origin)
+      corsResponse.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+      corsResponse.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+      corsResponse.headers.set('Access-Control-Max-Age', '86400')
+      
+      // Handle preflight requests
+      if (req.method === 'OPTIONS') {
+        return new NextResponse(null, { 
+          status: 204,
+          headers: corsResponse.headers
+        })
+      }
+      
+      return corsResponse
     }
 
     return res
@@ -34,5 +60,5 @@ export async function middleware(req: NextRequest) {
 
 // Only run middleware on specific paths
 export const config = {
-  matcher: ["/account/:path*", "/checkout/:path*", "/auth/reset-password/:path*"],
+  matcher: ["/account/:path*", "/checkout/:path*", "/auth/reset-password/:path*", "/api/:path*"],
 }

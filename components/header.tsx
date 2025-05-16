@@ -109,6 +109,18 @@ export default function Header() {
                 <ShoppingCart className="h-5 w-5" />
               </Button>
             </Link>
+            <Link href="/dashboard">
+              <Button
+                variant="ghost"
+                size="icon"
+                className={`hover:bg-gray-50 ${
+                  pathname === "/dashboard" ? "bg-[#e43a9d] text-white" : "text-black hover:text-gray-700"
+                }`}
+                title="My Dashboard"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg>
+              </Button>
+            </Link>
             <Link href="/account">
               <Button
                 variant="ghost"
@@ -214,6 +226,17 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
+              </Link>
+              <Link
+                href="/dashboard"
+                className={`font-medium py-2 transition-colors ${
+                  pathname === "/dashboard"
+                    ? "bg-[#e43a9d] text-white px-3 py-2 rounded-md"
+                    : "text-black hover:text-gray-700"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                My Dashboard
               </Link>
               <Link
                 href="/account"

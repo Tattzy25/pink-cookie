@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/admin/", "/secure-admin/", "/api/"],
+      disallow: ["/api/", "/secure-admin/", "/admin/"],
     },
     sitemap: "https://dessertprint.com/sitemap.xml",
   }

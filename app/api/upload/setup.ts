@@ -1,16 +1,9 @@
 import { NextResponse } from "next/server"
-import { createClient } from "@supabase/supabase-js"
+import { createServerSupabaseClient } from "@/lib/supabase"
 
 export async function POST() {
   try {
-    const supabaseUrl = process.env.SUPABASE_URL
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-
-    if (!supabaseUrl || !supabaseKey) {
-      return NextResponse.json({ error: "Supabase credentials not configured" }, { status: 500 })
-    }
-
-    const supabase = createClient(supabaseUrl, supabaseKey)
+    const supabase = createServerSupabaseClient()
 
     // Create the bucket if it doesn't exist
     const { data: buckets, error: bucketsError } = await supabase.storage.listBuckets()

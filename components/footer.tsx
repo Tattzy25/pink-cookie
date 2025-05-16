@@ -82,9 +82,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/admin/login" className="text-black hover:text-gray-800 transition-colors">
-                  Admin
-                </Link>
+                
               </li>
             </ul>
           </div>

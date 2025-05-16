@@ -1,13 +1,8 @@
-import { createClient } from "@supabase/supabase-js"
 import { NextResponse } from "next/server"
+import { createServerSupabaseClient } from "@/lib/supabase"
 
 // Create a Supabase client with the service role key (bypasses RLS)
-const supabaseAdmin = createClient(process.env.SUPABASE_URL || "", process.env.SUPABASE_SERVICE_ROLE_KEY || "", {
-  auth: {
-    autoRefreshToken: false,
-    persistSession: false,
-  },
-})
+const supabaseAdmin = createServerSupabaseClient()
 
 export async function POST(request: Request) {
   try {
